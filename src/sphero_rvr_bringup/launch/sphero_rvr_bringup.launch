@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="model" default="$(find sphero_rvr_description)/urdf/sphero_rvr.urdf.xacro"/>
+
+    <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+        <include file="$(find sphero_rvr_description)launch/state_publisher.launch"/>
+
+    <!-- python driver node -->
+    <node pkg="sphero_rvr_driver" type="rvr_driver.py" name="rvr_driver" output="screen">
+        <remap from="~cmd_vel" to="/controller/tracks/cmd_vel" />
+        <remap from="~odom" to="/controller/tracks/odom" />
+    </node>
+
+    <!-- mqtt fleet data logger -->
+    <node pkg="sphero_rvr_driver" type="mqtt_fleet_logger.py" name="rvr_fleet_logger" output="screen">
+    </node>
+
+    <!-- controllers -->
+    <arg name="joy_dev" default="/dev/input/js0" />
+    <arg name="teleop_joy_config" default="$(find sphero_rvr_controllers)config/joy_config.yaml" />
+    <arg name="twist_mux_config"  default="$(find sphero_rvr_controllers)config/twist_mux.yaml"/>
+
+    <!-- joy driver -->
+    <node pkg="joy" type="joy_node" name="joy_node">
+        <param name="dev" value="$(arg joy_dev)" />
+        <param name="deadzone" value="0.3" />
+        <param name="autorepeat_rate" value="20" />
+    </node>
+
+    <!-- joy teleop -->
+    <node pkg="teleop_twist_joy" name="teleop_twist_joy" type="teleop_node">
+        <remap from="cmd_vel" to="/joy_teleop/cmd_vel" />
+        <rosparam command="load" file="$(arg teleop_joy_config)" />
+    </node>
+
+    <!-- twist mux -->
+    <node pkg="twist_mux" type="twist_mux" name="twist_mux" output="screen">
+        <remap from="cmd_vel_out" to="/controller/tracks/cmd_vel" />
+        <rosparam file="$(arg twist_mux_config)"  command="load"/>
+    </node>
+
+</launch>
