@@ -17,7 +17,7 @@
 
 # Launch rvrbot (in ros_entrypoint.bash):
 
-#     roslaunch sphero_rvr_bringup sphero_rvr_bringup.launch
+#     roslaunch sphero_rvr_bringup sphero_rvr_merged_bringup.launch
 
 
 FROM ros:noetic-ros-base-focal
