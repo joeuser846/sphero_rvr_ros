@@ -68,7 +68,7 @@ COPY src $ROS_WS/src
 #     -b master \
 #     https://github.com/ldrobotSensorTeam/ldlidar_stl_ros.git
 
-# Add the Sphero SDK
+# Add the Sphero SDK and MQTT library
 RUN pip install sphero-sdk
 RUN pip install paho-mqtt
 
