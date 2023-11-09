@@ -1,0 +1,33 @@
+# http://wiki.ros.org/costmap_2d/flat
+
+global_costmap:
+
+  global_frame: map
+  robot_base_frame: base_footprint
+  rolling_window: false
+  update_frequency:  5.0           # How fast the costmap should be updated (how often new sensor data is integrated)
+  publish_frequency: 2.0           # How often to update RVIZ display (per sec)
+  observation_persistence: 0.5
+  transform_tolerance: 1.0
+
+  plugins:
+    - {name: static_layer, type: "costmap_2d::StaticLayer"}
+    - {name: obstacle_layer, type: costmap_2d::ObstacleLayer}       # Required or global planner won't avoid obstacles
+    - {name: inflation_layer, type: costmap_2d::InflationLayer}
+
+  static_layer:
+    enabled:  true
+    map_topic: "map"
+
+  obstacle_layer:
+    enabled: true
+    footprint_clearing_enabled: true
+    observation_sources: scan
+    scan: {sensor_frame: rplidar_laser_link, data_type: LaserScan, topic: diffbot/scan, marking: true, clearing: true}
+
+  inflation_layer:
+    enabled: true
+    cost_scaling_factor: 2.58     # https://kaiyuzheng.me/documents/papers/ros_navguide.pdf
+    inflation_radius: 1.75        # https://kaiyuzheng.me/documents/papers/ros_navguide.pdf
+    
+  

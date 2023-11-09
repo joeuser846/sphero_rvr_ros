@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
   <!-- filter parameters -->
-  <arg name="ekf_local_config" default="$(find sphero_rvr_navigation)/config/localisation.yaml" />
+  <arg name="ekf_local_config" default="$(find sphero_rvr_navigation)/config/localization.yaml" />
 
   <!-- filters -->
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_local" clear_params="true" >
