@@ -1,12 +1,15 @@
 
-# Build arm64 image on Raspberry Pi and push to gram registry
-# If push fails restart docker engine on gram
+# If push fails restart docker engine on gram ('sudo service docker restart')
 
 #     docker build --no-cache --file Dockerfile -t gram:5000/rvrbot:arm64 . --push
+
+#     docker build --no-cache --file Dockerfile -t gram:5000/rvrbot:x86 . --push
 
 # Bringup container:
 
 #     docker run -it --rm --network=host --privileged --name=rvrbot gram:5000/rvrbot:arm64 
+
+#     docker run -it --rm --network=host --privileged --name=rvrbot gram:5000/rvrbot:x86
 
 # Access bash prompt on running rvrbot container:
 
