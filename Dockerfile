@@ -1,23 +1,33 @@
 
 # If push fails restart docker engine on gram ('sudo service docker restart')
 
+# For rvrbot on RPi/arm64
+
 #     docker build --no-cache --file Dockerfile -t gram:5000/rvrbot:arm64 . --push
 
-#     docker build --no-cache --file Dockerfile -t gram:5000/rvrbot:x86 . --push
-
-# Bringup container:
+#     docker build --file Dockerfile -t gram:5000/rvrbot:arm64 . --push
 
 #     docker run -it --rm --network=host --privileged --name=rvrbot gram:5000/rvrbot:arm64 
 
+#     roslaunch sphero_rvr_bringup sphero_rvr_merged_bringup.launch
+
+
+# For devhost on gram/x86::
+
+#     docker build --no-cache --file Dockerfile -t gram:5000/rvrbot:x86 . --push
+
+#     docker build --file Dockerfile -t gram:5000/rvrbot:x86 . --push
+
 #     docker run -it --rm --network=host --privileged --name=rvrbot gram:5000/rvrbot:x86
 
-# Access bash prompt on running rvrbot container:
+#     roslaunch sphero_rvr_navigation sphero_rvr_navigation.launch
+
+
+# Access bash prompt on running container:
 
 #     docker exec -it rvrbot /bin/bash
 
-# Launch rvrbot (in ros_entrypoint.bash):
 
-#     roslaunch sphero_rvr_bringup sphero_rvr_merged_bringup.launch
 
 
 FROM ros:noetic-ros-base-focal
