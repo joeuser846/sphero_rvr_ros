@@ -1,7 +1,6 @@
 <launch>
 
   <!-- arguments -->
-  <arg name="model" default="rvr" />
   <arg name="map_file" default="$(find sphero_rvr_navigation)/maps/masterBR.yaml"/>
   <arg name="open_rviz" default="true"/>
   <arg name="move_forward_only" default="false"/>
