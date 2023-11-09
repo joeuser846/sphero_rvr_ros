@@ -4,9 +4,9 @@
 
 # For rvrbot on RPi/arm64
 
-#     docker build --no-cache --build-arg branch=rvrbot --file Dockerfile -t gram:5000/rvrbot:arm64 . --push
+#     docker build --no-cache --target=rvrbot --file Dockerfile -t gram:5000/rvrbot:arm64 . --push
 
-#     docker build --build-arg branch=rvrbot --file Dockerfile -t gram:5000/rvrbot:arm64 . --push
+#     docker build --target=rvrbot --file Dockerfile -t gram:5000/rvrbot:arm64 . --push
 
 #     docker run -it --rm --network=host --privileged --name=rvrbot gram:5000/rvrbot:arm64 
 
@@ -14,9 +14,9 @@
 
 # For devhost on gram/x86:
 
-#     docker build --no-cache --build-arg branch=devhost  --file Dockerfile -t gram:5000/rvrbot:x86 . --push
+#     docker build --no-cache --target=devhost  --file Dockerfile -t gram:5000/rvrbot:x86 . --push
 
-#     docker build --build-arg branch=devhost --file Dockerfile -t gram:5000/rvrbot:x86 . --push
+#     docker build --target=devhost --file Dockerfile -t gram:5000/rvrbot:x86 . --push
 
 #     docker run -it --rm --network=host --privileged --name=devhost gram:5000/rvrbot:x86
 
@@ -30,7 +30,6 @@
 
 #     xhost +local: 
 
-ARG branch
 FROM ros:noetic-ros-base-focal AS base
 USER root
 # Suppress all interactive prompts during build
@@ -92,16 +91,12 @@ ENTRYPOINT ["./ros_entrypoint.bash"]
 # Following executes at <exec "$@"> in entrypoint file
 CMD ["/bin/bash"]
 
-# Do not change following ENV variables - they are set this way after much debugging
+# Do not change following ENVs - they are set this way after much debugging
 
-FROM base AS branch-rvrbot
+FROM base AS rvrbot
 ENV ROS_MASTER_URI=http://localhost:11311/
 ENV ROS_HOSTNAME=rvrbot
 
-FROM base AS branch-devhost
+FROM base AS devhost
 ENV ROS_MASTER_URI=http://rvrbot:11311/
 ENV ROS_HOSTNAME=gram
-
-FROM branch-${branch}
-RUN echo "ROS_MASTER_URI=${ROS_MASTER_URI}"
-RUN echo "ROS_HOSTNAME=${ROS_HOSTNAME}"
