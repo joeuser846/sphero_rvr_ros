@@ -92,6 +92,7 @@ ENTRYPOINT ["./ros_entrypoint.bash"]
 CMD ["/bin/bash"]
 
 # Do not change following ENVs - they are set this way after much debugging
+# Create two layers with active one selected by build --target argument
 
 FROM base AS rvrbot
 ENV ROS_MASTER_URI=http://localhost:11311/
