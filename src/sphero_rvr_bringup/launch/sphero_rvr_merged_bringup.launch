@@ -6,7 +6,11 @@
     <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
 
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
-        <include file="$(find sphero_rvr_description)launch/state_publisher.launch"/>
+    
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+        <param name="use_gui" value="true" />
+    </node>
+        
 
     <!-- python driver node -->
     <node pkg="sphero_rvr_driver" type="rvr_driver.py" name="rvr_driver" output="screen">

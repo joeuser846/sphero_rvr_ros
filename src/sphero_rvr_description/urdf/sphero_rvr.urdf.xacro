@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="track_robot">
 
-    <!--common-->
+    <!-- common -->
     <xacro:include filename="$(find sphero_rvr_description)/urdf/common.urdf.xacro" />
     <xacro:include filename="$(find sphero_rvr_description)/urdf/materials.urdf.xacro" />
     <xacro:include filename="$(find sphero_rvr_description)/urdf/geometry.urdf.xacro" />
@@ -13,13 +13,13 @@
     <!-- urg laser -->
     <xacro:include filename="$(find urg_node)/urdf/hokuyo_ust10.urdf.xacro" />
 
-
-    <!-- dummy base link no inertia to satisfy kdl -->
-    <link name="base_link"/>
-
-    <!-- Base footprint is on the ground under the robot -->
+    <!-- base_footprint is on the ground under the robot -->
     <link name="base_footprint"/>
 
+    <!-- dummy base_link no inertia to satisfy kdl -->
+    <link name="base_link"/>
+
+    <!-- attach base_link to base_footprint -->
     <joint name="base_footprint_joint" type="fixed">
         <origin xyz="0 0 ${rvr_track_dz - rvr_wheel_radius}" rpy="0 0 0" />
         <parent link="base_link" />
@@ -55,7 +55,6 @@
         <origin xyz="${-0.03} 0 ${rvr_body_height + 0.035}" rpy="0 0 0" />
     </xacro:hokuyo_ust10_mount>
 
-    <!-- gazebo extras -->
     <!-- gazebo control -->
     <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
