@@ -1,27 +1,26 @@
 
 # If push fails restart docker engine on gram ('sudo service docker restart')
 
+
 # For rvrbot on RPi/arm64
 
-#     docker build --no-cache --file Dockerfile -t gram:5000/rvrbot:arm64 . --push
+#     docker build --no-cache --build-arg branch=rvrbot --file Dockerfile -t gram:5000/rvrbot:arm64 . --push
 
-#     docker build --file Dockerfile -t gram:5000/rvrbot:arm64 . --push
+#     docker build --build-arg branch=rvrbot --file Dockerfile -t gram:5000/rvrbot:arm64 . --push
 
 #     docker run -it --rm --network=host --privileged --name=rvrbot gram:5000/rvrbot:arm64 
 
 #     roslaunch sphero_rvr_bringup sphero_rvr_merged_bringup.launch
 
+# For devhost on gram/x86:
 
-# For devhost on gram/x86::
+#     docker build --no-cache --build-arg branch=gram  --file Dockerfile -t gram:5000/rvrbot:x86 . --push
 
-#     docker build --no-cache --file Dockerfile -t gram:5000/rvrbot:x86 . --push
+#     docker build --build-arg branch=gram --file Dockerfile -t gram:5000/rvrbot:x86 . --push
 
-#     docker build --file Dockerfile -t gram:5000/rvrbot:x86 . --push
-
-#     docker run -it --rm --network=host --privileged --name=rvrbot gram:5000/rvrbot:x86
+#     docker run -it --rm --network=host --privileged --name=devhost gram:5000/rvrbot:x86
 
 #     roslaunch sphero_rvr_navigation sphero_rvr_navigation.launch
-
 
 # Access bash prompt on running container:
 
@@ -29,8 +28,8 @@
 
 
 
-
-FROM ros:noetic-ros-base-focal
+ARG branch
+FROM ros:noetic-ros-base-focal AS base
 USER root
 # Suppress all interactive prompts during build
 ENV DEBIAN_FRONTEND=noninteractive
@@ -85,12 +84,22 @@ RUN catkin config --extend /opt/ros/$ROS_DISTRO && \
 # Note: 'docker run --ipc=' parameter may improve some rviz rendering artifacts
 ENV DISPLAY=:0
 
-# Do not change following ENV variables - they are set this way after much debugging
-ENV ROS_MASTER_URI=http://localhost:11311/
-ENV ROS_HOSTNAME=rvrbot
-
 COPY ros_entrypoint.bash .
 RUN chmod +x ./ros_entrypoint.bash
 ENTRYPOINT ["./ros_entrypoint.bash"]
 # Following executes at <exec "$@"> in entrypoint file
 CMD ["/bin/bash"]
+
+# Do not change following ENV variables - they are set this way after much debugging
+
+FROM base AS branch-rvrbot
+ENV ROS_MASTER_URI=http://localhost:11311/
+ENV ROS_HOSTNAME=rvrbot
+
+FROM base AS branch-gram
+ENV ROS_MASTER_URI=http://rvrbot:11311/
+ENV ROS_HOSTNAME=gram
+
+FROM branch-${branch}
+RUN echo "ROS_MASTER_URI=${ROS_MASTER_URI}"
+RUN echo "ROS_HOSTNAME=${ROS_HOSTNAME}"
