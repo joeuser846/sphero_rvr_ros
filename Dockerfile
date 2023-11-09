@@ -14,9 +14,9 @@
 
 # For devhost on gram/x86:
 
-#     docker build --no-cache --build-arg branch=gram  --file Dockerfile -t gram:5000/rvrbot:x86 . --push
+#     docker build --no-cache --build-arg branch=devhost  --file Dockerfile -t gram:5000/rvrbot:x86 . --push
 
-#     docker build --build-arg branch=gram --file Dockerfile -t gram:5000/rvrbot:x86 . --push
+#     docker build --build-arg branch=devhost --file Dockerfile -t gram:5000/rvrbot:x86 . --push
 
 #     docker run -it --rm --network=host --privileged --name=devhost gram:5000/rvrbot:x86
 
@@ -96,7 +96,7 @@ FROM base AS branch-rvrbot
 ENV ROS_MASTER_URI=http://localhost:11311/
 ENV ROS_HOSTNAME=rvrbot
 
-FROM base AS branch-gram
+FROM base AS branch-devhost
 ENV ROS_MASTER_URI=http://rvrbot:11311/
 ENV ROS_HOSTNAME=gram
 
