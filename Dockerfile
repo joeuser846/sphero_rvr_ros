@@ -55,7 +55,7 @@ ENV ROS_WS /opt/ros_ws
 RUN mkdir -p $ROS_WS/src
 WORKDIR ${ROS_WS}
 
-# All COPY-from locations are rooted at location of this Dockerfile
+# COPY-from is rooted at location of this Dockerfile
 COPY src $ROS_WS/src
 
 # Clone ROS Robot Localization package
