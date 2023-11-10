@@ -4,15 +4,15 @@
 
 # Commands for rvrbot on RPi/arm64
 
-#     no-cache / push:  docker build --no-cache --target=rvrbot --file Dockerfile -t gram:5000/rvr:arm64 . --push
+#     no-cache / registry:  docker build --no-cache --target=rvrbot --file Dockerfile -t gram:5000/rvr:arm64 . --push
 
-#     cache / push:     docker build --target=rvrbot --file Dockerfile -t gram:5000/rvr:arm64 . --push
+#     cache / registry:     docker build --target=rvrbot --file Dockerfile -t gram:5000/rvr:arm64 . --push
 
-#     cache / no-push:  docker build --target=rvrbot --file Dockerfile -t rvr:arm64 .       DON'T FORGET '.'
+#     cache / local:        docker build --target=rvrbot --file Dockerfile -t rvr:arm64 .       DON'T FORGET '.'
 
-#     from registry:    docker run -it --rm --network=host --privileged --name=rvrbot gram:5000/rvr:arm64 
+#     run registry:         docker run -it --rm --network=host --privileged --name=rvrbot gram:5000/rvr:arm64 
 
-#     from local:       docker run -it --rm --network=host --privileged --name=rvrbot rvr:arm64
+#     run local:            docker run -it --rm --network=host --privileged --name=rvrbot rvr:arm64
 
 #     roslaunch sphero_rvr_bringup sphero_rvr_merged_bringup.launch
 
