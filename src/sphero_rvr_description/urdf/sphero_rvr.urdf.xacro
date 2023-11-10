@@ -16,14 +16,14 @@
     <!-- base_footprint is on the ground under the robot -->
     <link name="base_footprint"/>
 
-    <!-- dummy base_link no inertia to satisfy kdl -->
+    <!-- base_link is on the rvr -->
     <link name="base_link"/>
 
     <!-- attach base_link to base_footprint -->
     <joint name="base_footprint_joint" type="fixed">
         <origin xyz="0 0 ${rvr_track_dz - rvr_wheel_radius}" rpy="0 0 0" />
-        <parent link="base_link" />
-        <child link="base_footprint" />
+        <parent link="base_footprint" />
+        <child link="base_link" />
     </joint>
 
     <!-- attach body to base_link -->

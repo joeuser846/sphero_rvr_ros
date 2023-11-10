@@ -7,9 +7,10 @@
   <arg name="move_forward_only" default="false"/>
   <arg name="local_planner" default="dwa" doc="Local planner can be either dwa, base, teb or pose"/>
 
- <!-- localization (odom/imu fusion)-->
+ <!-- localization (odom/imu fusion)  (running on rvrbot instead)
   <include file="$(find sphero_rvr_navigation)/launch/localization.launch">
   </include>
+  -->
 
   <!-- map server -->
   <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>

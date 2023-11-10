@@ -11,6 +11,12 @@
         <param name="use_gui" value="true" />
     </node>
         
+    <arg name="ekf_local_config" default="$(find sphero_rvr_navigation)/config/localization.yaml" />
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_local" clear_params="true" >
+        <rosparam command="load" file="$(arg ekf_local_config)" />
+        <param name="imu0" value="/rvr_driver/imu/data" />
+        <remap from="odometry/filtered" to="odometry/filtered/local" />
+    </node>
 
     <!-- python driver node -->
     <node pkg="sphero_rvr_driver" type="rvr_driver.py" name="rvr_driver" output="screen">
