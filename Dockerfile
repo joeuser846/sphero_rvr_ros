@@ -24,6 +24,10 @@
 
 #     xhost +local:
 
+#     rosrun tf2_tools view_frames.py
+
+#     evince frames.pdf
+
 #     docker exec -it devhost /bin/bash
 
 #     roslaunch sphero_rvr_navigation sphero_rvr_navigation.launch
