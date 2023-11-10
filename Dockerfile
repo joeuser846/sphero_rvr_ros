@@ -34,7 +34,7 @@
 
 #     docker exec -it devhost /bin/bash
 
-#     roslaunch sphero_rvr_navigation sphero_rvr_navigation.launch
+#     roslaunch sphero_rvr_navigation navigation.launch
 
 
 FROM ros:noetic-ros-base-focal AS base
