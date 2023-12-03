@@ -43,7 +43,7 @@ USER root
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update -y && \
-# Upgrade required or 'rosdep install' gets errors pulling dependencies 
+# Upgrade may be required if 'rosdep install' gets errors pulling dependencies 
 #   apt upgrade -y && \
     apt install -y \
     python3-catkin-tools \
