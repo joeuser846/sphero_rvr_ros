@@ -6,4 +6,6 @@
     <!-- controllers -->
     <include file="$(find sphero_rvr_controllers)launch/sphero_rvr_controllers.launch"/>
 
+    <!-- lidar -->
+    <include file="$(find ldlidar_stl_ros)launch/ld06.launch"/>
 </launch>
