@@ -8,8 +8,6 @@
 
 #     cache / registry:     docker build --target=rvrbot --file Dockerfile -t gram:5000/rvr:arm64 . --push
 
-#     cache / local:        docker build --target=rvrbot --file Dockerfile -t rvr:arm64 .       DON'T FORGET '.'
-
 #     run registry:         docker run -it --rm --network=host --privileged --name=rvrbot gram:5000/rvr:arm64 
 
 #     run local:            docker run -it --rm --network=host --privileged --name=rvrbot rvr:arm64
