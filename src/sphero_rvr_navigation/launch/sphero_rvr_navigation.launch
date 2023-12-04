@@ -6,13 +6,10 @@
     <!-- controllers -->
     <include file="$(find sphero_rvr_controllers)launch/sphero_rvr_controllers.launch"/>
 
-    <!-- laser driver -->
-    <include file="$(find urg_node)/launch/urg_lidar.launch" />
-
     <!--- move base -->
     <include file="$(find sphero_rvr_navigation)/launch/move_base_flex.launch" />
 
-    <!-- gmapping -->
-    <include file="$(find sphero_rvr_navigation)/launch/gmapping.launch" />
+    <!-- rviz -->
+    <include file="$(find sphero_rvr_desktop)/launch/display.launch" />
 
 </launch>
