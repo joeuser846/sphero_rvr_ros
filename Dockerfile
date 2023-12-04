@@ -1,28 +1,26 @@
 
-# If push fails restart docker engine on gram ('sudo service docker restart')
+# If push fails restart docker engine on devhost ('sudo service docker restart')
 
 
 # Commands for rvrbot on RPi/arm64
 
-#   docker build --no-cache --target=rvrbot --file Dockerfile -t gram:5000/rvr:arm64 . --push
+#   docker build --no-cache --target=rvrbot --file Dockerfile -t devhost:5000/rvr:arm64 . --push
 
-#   docker build --target=rvrbot --file Dockerfile -t gram:5000/rvr:arm64 . --push
+#   docker build --target=rvrbot --file Dockerfile -t devhost:5000/rvr:arm64 . --push
 
-#   docker run -it --rm --network=host --privileged --name=rvrbot gram:5000/rvr:arm64 
-
-#   docker run -it --rm --network=host --privileged --name=rvrbot rvr:arm64
+#   docker run -it --rm --network=host --privileged --name=rvrbot devhost:5000/rvr:arm64 
 
 #   roslaunch sphero_rvr_bringup sphero_rvr_merged_bringup.launch
 
 #   docker exec -it rvrbot /bin/bash
 
-# Commands for devhost on gram/x86:
+# Commands for devhost on devhost/x86:
 
-#   docker build --no-cache --target=devhost --file Dockerfile -t gram:5000/rvr:x86 . --push
+#   docker build --no-cache --target=devhost --file Dockerfile -t devhost:5000/rvr:x86 . --push
 
-#   docker build --target=devhost --file Dockerfile -t gram:5000/rvr:x86 . --push
+#   docker build --target=devhost --file Dockerfile -t devhost:5000/rvr:x86 . --push
 
-#   docker run -it --rm --network=host --privileged --name=devhost gram:5000/rvr:x86
+#   docker run -it --rm --network=host --privileged --name=devhost devhost:5000/rvr:x86
 
 #   xhost +local:
 
