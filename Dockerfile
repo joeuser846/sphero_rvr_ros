@@ -38,6 +38,7 @@ RUN apt update -y && \
     wget \
     git \
     python3-pip \
+    ros-noetic-rqt \
 # Install tools for debugging comms at runtime
     net-tools \
     iputils-ping \
