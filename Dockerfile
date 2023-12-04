@@ -39,6 +39,8 @@ RUN apt update -y && \
     git \
     python3-pip \
     ros-noetic-rqt \
+    ros-noetic-rqt-robot-plugins \
+    ros-noetic-rqt-common-plugins \
 # Install tools for debugging comms at runtime
     net-tools \
     iputils-ping \
@@ -47,7 +49,7 @@ RUN apt update -y && \
 
 # Set location of our container's catkin workspace
 ENV ROS_WS /opt/ros_ws
-RUN mkdir -p $ROS_WS/src
+RUN mkdir -p $ROS_WS/srcgroovy
 WORKDIR ${ROS_WS}
 
 # COPY-from is rooted at location of this Dockerfile
