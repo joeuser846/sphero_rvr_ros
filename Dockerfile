@@ -4,35 +4,32 @@
 
 # Commands for rvrbot on RPi/arm64
 
-#     no-cache / registry:  docker build --no-cache --target=rvrbot --file Dockerfile -t gram:5000/rvr:arm64 . --push
+#   docker build --no-cache --target=rvrbot --file Dockerfile -t gram:5000/rvr:arm64 . --push
 
-#     cache / registry:     docker build --target=rvrbot --file Dockerfile -t gram:5000/rvr:arm64 . --push
+#   docker build --target=rvrbot --file Dockerfile -t gram:5000/rvr:arm64 . --push
 
-#     run registry:         docker run -it --rm --network=host --privileged --name=rvrbot gram:5000/rvr:arm64 
+#   docker run -it --rm --network=host --privileged --name=rvrbot gram:5000/rvr:arm64 
 
-#     run local:            docker run -it --rm --network=host --privileged --name=rvrbot rvr:arm64
+#   docker run -it --rm --network=host --privileged --name=rvrbot rvr:arm64
 
-#     roslaunch sphero_rvr_bringup sphero_rvr_merged_bringup.launch
+#   roslaunch sphero_rvr_bringup sphero_rvr_merged_bringup.launch
 
-#     docker exec -it rvrbot /bin/bash
+#   docker exec -it rvrbot /bin/bash
 
 # Commands for devhost on gram/x86:
 
-#     docker build --no-cache --target=devhost --file Dockerfile -t gram:5000/rvr:x86 . --push
+#   docker build --no-cache --target=devhost --file Dockerfile -t gram:5000/rvr:x86 . --push
 
-#     docker build --target=devhost --file Dockerfile -t gram:5000/rvr:x86 . --push
+#   docker build --target=devhost --file Dockerfile -t gram:5000/rvr:x86 . --push
 
-#     docker run -it --rm --network=host --privileged --name=devhost gram:5000/rvr:x86
+#   docker run -it --rm --network=host --privileged --name=devhost gram:5000/rvr:x86
 
-#     xhost +local:
+#   xhost +local:
 
-#     rosrun tf2_tools view_frames.py
+#   rosrun tf2_tools view_frames.py
+#   evince frames.pdf
 
-#     evince frames.pdf
-
-#     docker exec -it devhost /bin/bash
-
-#     roslaunch sphero_rvr_navigation navigation.launch
+#   docker exec -it devhost /bin/bash
 
 
 FROM ros:noetic-ros-base-focal AS base
