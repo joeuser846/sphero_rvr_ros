@@ -14,7 +14,7 @@
 
 #   docker exec -it rvrbot /bin/bash
 
-# Commands for devhost on devhost/x86:
+# Commands for devhost on gram/x86:
 
 #   docker build --no-cache --target=devhost --file Dockerfile -t gram:5000/rvr:x86 . --push
 
